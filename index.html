@@ -1,14 +1,73 @@
-<!DOCTYPE html>
+// client/index.html
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Twitter Clone with Chat</title>
+        <link rel="stylesheet" href="style.css" />
+        <script src="logic.js" defer></script>
+    </head>
+    <body>
+        <div id="app">
+            <h1>Twitter Clone</h1>
+            <div id="auth">
+                <h2>Authentication</h2>
+                <input type="text" id="username" placeholder="Username" />
+                <input type="password" id="password" placeholder="Password" />
+                <button onclick="register()">Register</button>
+                <button onclick="login()">Login</button>
+            </div>
+            <div id="main" style="display: none">
+                <div id="tweet-form">
+                    <h2>Post a Tweet</h2>
+                    <textarea
+                        id="tweet-content"
+                        placeholder="What's happening?"
+                    ></textarea>
+                    <button onclick="postTweet()">Tweet</button>
+                </div>
+                <div id="tweets">
+                    <h2>Recent Tweets</h2>
+                    <!-- Tweets will be dynamically added here -->
+                </div>
+                <div id="chat">
+                    <h2>Chat</h2>
+                    <div id="chat-messages"></div>
+                    <input
+                        type="text"
+                        id="chat-input"
+                        placeholder="Type a message..."
+                    />
+                    <button onclick="sendChatMessage()">Send</button>
+                </div>
+            </div>
+        </div>
+        <script>
+            // ... (previous JavaScript code remains unchanged)
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-</head>
+            function loadTweets() {
+                fetch("/api/tweets")
+                    .then((response) => response.json())
+                    .then((tweets) => {
+                        const tweetsContainer =
+                            document.getElementById("tweets");
+                        tweetsContainer.innerHTML = "<h2>Recent Tweets</h2>";
+                        tweets.forEach((tweet) => {
+                            const tweetElement = document.createElement("div");
+                            tweetElement.className = "tweet";
+                            tweetElement.innerHTML = `
+                            <span class="username">${tweet.user.username}</span>
+                            <span class="timestamp">${new Date(tweet.createdAt).toLocaleString()}</span>
+                            <p>${tweet.content}</p>
+                        `;
+                            tweetsContainer.appendChild(tweetElement);
+                        });
+                    });
+            }
 
-<body>
-
-</body>
-
+            // Load tweets periodically
+            setInterval(loadTweets, 10000);
+        </script>
+    </body>
 </html>
