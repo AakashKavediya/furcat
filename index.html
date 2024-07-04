@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Twitter Clone with Chat</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div id="app">
+        <h1>Twitter Clone</h1>
+        <div id="auth">
+            <h2>Authentication</h2>
+            <input type="text" id="username" placeholder="Username" />
+            <input type="password" id="password" placeholder="Password" />
+            <button onclick="register()">Register</button>
+            <button onclick="login()">Login</button>
+        </div>
+        <div id="main" style="display: none">
+            <div id="tweet-form">
+                <h2>Post a Tweet</h2>
+                <textarea id="tweet-content" placeholder="What's happening?"></textarea>
+                <button onclick="postTweet()">Tweet</button>
+            </div>
+            <div id="tweets">
+                <h2>Recent Tweets</h2>
+                <!-- Tweets will be dynamically added here -->
+            </div>
+            <div id="chat">
+                <h2>Chat</h2>
+                <div id="chat-messages"></div>
+                <input type="text" id="chat-input" placeholder="Type a message..." />
+                <button onclick="sendChatMessage()">Send</button>
+            </div>
+        </div>
+    </div>
+    <script src="./client.js"></script>
+</body>
+
+</html>
