@@ -1,7 +1,11 @@
 import React from 'react'
 import type { PropsWithChildren } from 'react'
-import {View,Text, StyleSheet,Image,TouchableOpacity, Linking} from 'react-native'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import {View,Text, StyleSheet,Image,TouchableOpacity, Linking} from 'react-native';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { Entypo } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome6 } from '@expo/vector-icons';
+
 
 type IconsProps = PropsWithChildren<{
     name: string
@@ -21,17 +25,21 @@ export default function Cards(){
                 <Text style={styles.username} >Fur Cat</Text>
             </View>
             <View style={styles.feed} >
-                <Image style={styles.feed_image}  source={{uri:'https://i.pinimg.com/564x/28/2f/94/282f942daf2273e31f7396cd1852d43f.jpg'}} />
+                <Image style={styles.feed_image}  source={{uri:'https://i.pinimg.com/564x/95/56/3c/95563c5c1e38382a10127343459376f5.jpg'}} />
+            </View>
+            <View>
+                <Text style={styles.bold} >The funny cat!</Text>
+                <Text style={styles.normal}>When you want to be both lazy and productive at the same time.</Text>
             </View>
             <View style={styles.social_links} >
                 <TouchableOpacity onPress={() => openWebsite('https://www.facebook.com')} >
-                    <Icon style={styles.links} name="facebook" size={28} color="#6AC6FF" />
+                    <FontAwesome style={styles.facebook} name="facebook-f" size={30} color="#00AEFF" />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => openWebsite('https://www.instagram.com')} >
-                    <Icon style={styles.links} name="instagram" size={35} color="#C8006E" />
+                       <FontAwesome style={styles.instagram} name="instagram" size={28} color="white" />
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => openWebsite('https://www.snapchat.com')} >
-                    <Icon style={styles.links} name="snapchat" size={35} color="#FFD817" />
+                    <FontAwesome style={styles.snapchat} name="snapchat-ghost" size={30} color="white" /> 
                 </TouchableOpacity>
             </View>
             <View>
@@ -76,6 +84,7 @@ const styles = StyleSheet.create({
         color:'white',
         padding:5,
         marginLeft:5,
+        
     },
     feed:{},
     feed_image:{
@@ -106,5 +115,55 @@ const styles = StyleSheet.create({
         flex:1,
         textAlign:'center',
         justifyContent: 'center',
+    },
+    facebook:{
+        backgroundColor:'white',
+        borderRadius:8,
+        padding:5,
+        width:35,
+        paddingHorizontal:8,
+        height:35,
+        flex:1,
+        alignItems:'center',
+        justifyContent:'center',
+        margin:5,
+    },
+    instagram:{
+        backgroundColor:'#FB1A61',
+        borderRadius:8,
+        padding:5,
+        width:35,
+        paddingHorizontal:6,
+        paddingBottom:5,
+        height:35,
+        flex:1,
+        alignItems:'center',
+        justifyContent:'center',
+        margin:5,
+    },
+    snapchat:{
+        backgroundColor:'#FFAE00',
+        borderRadius:8,
+        padding:5,
+        width:35,
+        paddingHorizontal:3,
+        height:35,
+        flex:1,
+        alignItems:'center',
+        justifyContent:'center',
+        margin:5,
+    },
+    bold:{ color:'white',
+    fontSize:20,
+    fontWeight:'bold',
+    paddingLeft:8,
+    marginTop:10,},
+    normal:{
+        color:'whitesmoke',
+    fontSize:15,
+    fontWeight:'normal',
+    paddingLeft:8,
+    marginVertical:5,
+
     },
 })
